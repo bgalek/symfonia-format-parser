@@ -1,0 +1,30 @@
+{
+  "name": "bgalek/symfonia-format-parser",
+  "description": "Sage Symfonia Format 3.0 parser",
+  "type": "library",
+  "require": {
+    "php": ">=7.1",
+    "ext-iconv": "@stable"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8",
+    "phpmd/phpmd": "@stable"
+  },
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Bartosz Gałek",
+      "email": "bartosz@galek.com.pl"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  },
+  "scripts": {
+    "test": "phpunit",
+    "lint": "phpmd src/ text codesize"
+  }
+}
