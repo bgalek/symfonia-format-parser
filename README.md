@@ -6,7 +6,7 @@
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/bgalek/symfonia-format-parser.svg?style=flat-square)
 
 ## What's "Format 3.0"
-**Format 3.0** is a default data exchange format for [https://www.sage.com.pl](Sage Applications). More information: [https://pomoc.sage.com.pl/data/hm/Symfonia/2017/data/wymiana_danych_format_3.htm](https://pomoc.sage.com.pl/data/hm/Symfonia/2017/data/wymiana_danych_format_3.htm)
+**Format 3.0** is a default data exchange format for [Sage Applications](https://www.sage.com.pl). More information: [https://pomoc.sage.com.pl/data/hm/Symfonia/2017/data/wymiana_danych_format_3.htm](https://pomoc.sage.com.pl/data/hm/Symfonia/2017/data/wymiana_danych_format_3.htm)
 
 ## Installation
 ```bash
