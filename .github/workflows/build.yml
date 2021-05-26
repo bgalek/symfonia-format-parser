@@ -26,6 +26,7 @@ jobs:
         uses: php-actions/composer@v5
         with:
           command: composer lint && composer test -- --coverage-clover=coverage.xml
+          php_version: 7.3
       
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
