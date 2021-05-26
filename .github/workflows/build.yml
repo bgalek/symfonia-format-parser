@@ -16,17 +16,30 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Cache Composer dependencies
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: /tmp/composer-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
-      
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
       - name: Install dependencies
-        uses: php-actions/composer@v5
-        with:
-          command: test -- --coverage-clover=coverage.xml
-          php_version: 7.3
+        run: composer install --no-interaction --no-suggest
+        
+      - name: Lint project
+        run: composer lint
+        
+      - name: Run tests
+        run: composer test -- --coverage-clover=coverage.xml
       
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
