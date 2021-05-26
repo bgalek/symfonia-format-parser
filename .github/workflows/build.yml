@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+      
+      - name: Install dependencies
+        uses: php-actions/composer@v5
+        with:
+          command: composer lint && composer test -- --coverage-clover=coverage.xml
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
